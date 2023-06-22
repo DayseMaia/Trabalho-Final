@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sun Energy</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}" type="image/x-icon">
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+    <!-- Icones -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons/styleicons.css') }}" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap" />
+  </head>
+
+  <body>
+    <header id="header">
+      <nav class="container">
+        <a href="#" class="logo">
+          <img class="logoimg" src="{{ url_for('static', filename='images/logo-2.png') }}" alt="" />
+        </a>
+        <div class="menu">
+          <ul class="grid">
+            <li><a class="title" href="#home">Início</a></li>
+            <li><a class="title" href="#about">Sobre</a></li>
+            <li><a class="title" href="#services">Serviços</a></li>
+            <li><a class="title" href="#testimonials">Depoimentos</a></li>
+            <li><a class="title" href="#contact">Contatos</a></li>
+            <li><a class="title" href="{{ url_for('simulacao') }}">Simulação</a></li>
+            <li><a class="title" href="{{ url_for('login') }}">Login</a></li> <!-- MODIFICAÇÃO BD adicionado links-->
+          </ul>
+        </div>
+        <div class="toggle icon-menu"></div>
+        <div class="toggle icon-close"></div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section" id="home">
+        <div class="container grid">
+          <div class="image">
+            <img
+              src="{{ url_for('static', filename='images/solar-system-ge2dd4e8cd_1920.jpg') }}"
+              alt="Imagem 1"
+            />
+          </div>
+
+          <div class="text">
+            <h2 class="title">Energia Solar</h2>
+
+            <p>
+              Com anos de experiência no mercado, a
+              <strong>Sun Energy</strong> oferece a melhor solução para nossos
+              clientes, contando com uma equipe experiente focada em oferecer o
+              melhor a nossos clientes.
+            </p>
+
+            <a
+              href="{{ url_for('simulacao') }}"
+              class="button"
+              >Quero um orçamento</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <div class="divider-1"></div>
+
+      <section class="section" id="about">
+        <div class="container grid">
+          <div class="image">
+            <img
+              src="{{ url_for('static', filename='images/canva-young-engineer-checking-maintenance-of-solar-panels-MAD_BVXbTZ4_edited.jpg') }}"
+              alt=""
+            />
+          </div>
+          <div class="text">
+            <h2 class="title">Sobre nós</h2>
+            <p>
+              Criada com o proposito de ser referencia no mercado, a Sun Energy
+              conta com uma equipe de engenheiros especializados em serviços de
+              engenharia, desde a análise técnica, projetos e orientação técnica
+              na execução dos serviços. Sempre prezando pela transparência,
+              responsabilidade e comprometimento.
+            </p>
+            <br />
+            <p>
+              A Sun Energy tem como visão realizar seus serviços com a máxima
+              excelência, buscando ser referência como prestadora de serviços de
+              engenharia.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider-2"></div>
+
+      <section class="section" id="services">
+        <div class="container grid">
+          <header>
+            <h2 class="title">Energia Solar</h2>
+            <p>
+              A melhor maneira de se economizar em sua fatura de energia,
+              contamos com uma equipe capacitada para uma real analise de
+              viabilidade do projeto, trazendo a maior transparencia para seu
+              projeto e esclarecendo todas as dúvidas de nossos clientes.
+            </p>
+          </header>
+          <div class="cards grid">
+            <div class="card">
+              <i class="icon-coins_icon"></i>
+              <h3 class="title">Economia de energia</h3>
+              <p>
+                Não tendo mais que depender das tarifas energéticas os sistemas
+                tem vida útil acima de 30 anos onde o retorno do seu
+                investimento fica entre 4 e 6 anos!
+              </p>
+            </div>
+            <div class="card">
+              <i class="icon-house_icon"></i>
+              <h3 class="title">Valorização do Imóvel</h3>
+              <p>
+                A instalação do sistema gera imediata valorização do imóvel em
+                média de 10%, de acordo com a capacidade instalada!
+              </p>
+            </div>
+            <div class="card">
+              <i class="icon-renewable_icon"></i>
+              <h3 class="title">Créditos</h3>
+              <p>
+                Os sistemas fotovoltaico são conectados à concessionária,
+                fazendo com que o excedente produzido gere créditos energéticos
+                para mais de uma residência!
+              </p>
+            </div>
+            <div class="card">
+              <i class="icon-gear_icon"></i>
+              <h3 class="title">Baixa Manutenção</h3>
+              <p>
+                Esse tipo de geração não requer um cuidado de manutenção
+                exaustivo, apenas uma limpeza periódica!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider-1"></div>
+
+      <section class="section" id="testimonials">
+        <div class="container">
+          <header>
+            <h2 class="title">Depoimentos de quem já passou por aqui</h2>
+          </header>
+
+          <div class="testimonials swiper">
+            <div class="swiper-wrapper">
+              <div class="testimonial swiper-slide">
+                <blockquote>
+                  <p>
+                    <span>&ldquo;</span>
+                    "Estou extremamente satisfeita com os serviços prestados pela Sun Energy. 
+                    A equipe foi muito profissional e eficiente desde o primeiro contato.
+                    - Wanessa Souza, cliente satisfeita.
+                  </p>
+                  <cite>
+                    <img
+                      src="https://randomuser.me/api/portraits/women/60.jpg"
+                    />
+                    Wanessa Souza
+                  </cite>
+                </blockquote>
+              </div>
+
+              <div class="testimonial swiper-slide">
+                <blockquote>
+                  <p>
+                    <span>&ldquo;</span>
+                    Recomendo fortemente a Sun Energy a todos que desejam fazer a transição para 
+                    uma fonte de energia sustentável e econômica." - Franciele Venega, cliente satisfeita.
+                  </p>
+                  <cite>
+                    <img
+                      src="https://randomuser.me/api/portraits/women/57.jpg"
+                    />
+                    Franciele Venega</cite
+                  >
+                </blockquote>
+              </div>
+
+              <div class="testimonial swiper-slide">
+                <blockquote>
+                  <p>
+                    <span>&ldquo;</span>
+                    Estamos muito felizes por termos optado por essa fonte de energia limpa e renovável 
+                    e pela parceria com uma empresa tão confiável." 
+                    - Valeska Fabris, proprietária de uma pequena empresa.
+                  </p>
+                  <cite>
+                    <img
+                      src="https://randomuser.me/api/portraits/women/43.jpg"
+                    />
+                    Valeska Fabris
+                  </cite>
+                </blockquote>
+              </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider-2"></div>
+
+      <section class="section" id="contact">
+        <div class="container grid">
+          <div class="text">
+            <h2 class="title">Entre em contato com a gente!</h2>
+
+            <p>
+              Entre em contato com a Sun Energy, queremos tirar suas dúvidas,
+              ouvir suas críticas e sugestões.
+            </p>
+
+            <a
+              href="https://web.whatsapp.com/"
+              class="button"
+              target="_blank"
+            >
+              <i class="icon-whatsapp"></i>
+              Entrar em contato
+            </a>
+          </div>
+          <div class="links">
+            <ul class="grid">
+              <li><i class="icon-phone"></i>00 00000-0000</li>
+              <li><i class="icon-map-pin"></i>R. das Energias Renováveis, 123 - Cidade Solar</li>
+              <li><i class="icon-mail"></i>sunenergy2024@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider-1"></div>
+    </main>
+
+    <footer class="section">
+      <div class="container grid">
+        <div class="brand">
+          <a href="#" class="logo logo-alt"
+            ><img class="logoimg" src="{{ url_for('static', filename='images/logo-2.png') }}" alt=""
+          /></a>
+          <p>©2023 Sun Energy.</p>
+          <p>Todos os direitos reservados.</p>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com/sun_energy_ce/?igshid=MzRlODBiNWFlZA%3D%3D" target="_blank"
+            ><i class="icon-instagram"></i
+          ></a>
+          <a href="https://www.facebook.com/" target="_blank"
+            ><i class="icon-facebook"></i
+          ></a>
+          <a href="https://www.youtube.com/channel/UC46EkMHZB2GBV52WvkZaM7w" target="_blank"
+            ><i class="icon-youtube"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#home" class="back-to-top"><i class="icon-arrow-up"></i></a>
+
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+
+</html>

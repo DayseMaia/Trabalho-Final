@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sun Energy - Login</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_login.css') }}">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+            <a>
+                <img class="logo" src="{{ url_for('static', filename='images/logo-2.png') }}" alt="" />
+            </a>
+            </nav>
+        </header>
+        <!-- <h1>Login</h1> -->
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <div class="login-page">
+            <div class="form">
+                <form method="POST" class="login-form"> <!-- action="/"> -->
+                    <!-- MODIFICAÇÃO BD value="{{request.form['']}}"
+                    <input type="text" name="nome" value="{{request.form['nome']}}" placeholder="Nome de usuário" required><br>
+                    <input type="text" name="sobrenome" value="{{request.form['sobrenome']}}" placeholder="Sobrenome" required><br> -->
+                    <input type="email" name="email" value="{{request.form['email']}}" placeholder="Email" required><br>
+                    <input type="password" name="senha" value="{{request.form['senha']}}" placeholder="Senha" required><br>
+                    <input class="button" type="submit" value="Entrar">
+                    <p class="message">Não tem uma conta? <a href="/register">Registre-se</a></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

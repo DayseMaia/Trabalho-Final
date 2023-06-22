@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sun Energy - On Grid</title>
+    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body class="homepage">
+    <form method="post"> <!--MODIFICAÇÃO BD linha 15-->
+    <div class="wrapper">
+        <header class="site-header">
+            <a href="{{ url_for('simulacao') }}"><img src="{{ url_for('static', filename='images/home.png') }}" class="home-btn"></a>
+            <h1>Simulação Sistema On Grid</h1>
+        </header>
+        <main class="main-content">
+            <div class="card-wrapper" id="first">
+                <div class="card">
+
+                    <h2>Cálculo do Requerimento de Energia</h2>
+                    <div class="energy-container">
+                        <span>Uso diário de energia (kWhr / dia): </span>
+                        <div class="text-field-group">
+                        <!-- MODIFICAÇÃO BD name = "KWHRDIA" value = "{{request.form['KWHRDIA']}}"-->
+                            <input class="textarea" id="requirement" type="number" name="KWHRDIA" value="{{request.form['KWHRDIA']}}" required>
+                            <span class="bar"></span>
+                            <label class="Label">kWhr</lable>
+                        </div>
+                    </div>
+                    <div style="margin-top: 3rem; font-size: 1.25rem;">% de energia a ser derivada da energia solar:</div>
+                    <div class="slider">
+                        <!-- MODIFICAÇÃO BD name="ENERGIASOL" value="{{request.form['ENERGIASOL=13']}}"-->
+                        <input type="range" id="slider1" name="ENERGIASOL" value="{{request.form['ENERGIASOL']}}" oninput="rangevalue1.value=value" />
+                        <output id="rangevalue1">10</output>
+                    </div>
+                    <div class="dropdown">
+                        <div class="select">
+                            <!-- MODIFICAÇÃO BD name="ESTADO" value="{{request.form['ESTADO']}}" -->
+                            <select id="state" class="select-text" name="ESTADO" value="{{request.form['ESTADO']}}" required>
+                                <option value="" disabled selected></option>
+                                <option value="ceará">Ceará</option>
+                                <option value="amazonas">Amazonas</option>
+                            </select>
+                            <span class="select-highlight"></span>
+                            <span class="select-bar"></span>
+                            <label class="select-label">Estado</label>
+                        </div>
+                        <div class="select">
+                            <!-- MODIFICAÇÃO BD name="CIDADE" value="{{request.form['CIDADE']}}" -->
+                            <select id="city" class="select-text" name="CIDADE" value="{{request.form['CIDADE']}}" required>
+                                <option value="" disabled selected></option>
+                                <option value="Caucaia">Caucaia</option>
+                                <option value="manaus">Manaus</option>
+                            </select>
+                            <span class="select-highlight"></span>
+                            <span class="select-bar"></span>
+                            <label class="select-label">Cidade</label>
+                        </div>
+                        <div>
+                            <span id='sunHours'>Irradiação Solar:</span>
+                        </div>
+                    </div>
+                    <a href="#second">
+                        <div class="nav-button" id="systemConstrain">
+                            Próximo
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="card-wrapper" id="second">
+                <div class="card">
+
+                    <h2>Cálculo do tamanho da matriz</h2>
+
+                    <div class="radio-group">
+                        <label for="r7">
+                            <!-- MODIFICAÇÃO BD name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" ainda não fiz as moficações-->
+                            <input id="r7" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" checked /><span>Painéis Padrão (15%)</span>
+                        </label>
+                        <label for="r8">
+                            <input id="r8" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" /><span>Painéis Premium (20%)</span>
+                        </label>
+                        <label for="r9">
+                            <input id="r9" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" /><span>Painéis de película fina (13%)</span>
+                        </label>
+                    </div>
+                    <div style="margin-top: 3rem; font-size: 1.25rem;">Potência do Módulo:</div>
+                    <div class="slider">
+                        <!-- MODIFICAÇÃO BD name="MODULOWATT" value="{{request.form['MODULOWATT']}}"-->
+                        <input id="rv3" type="range" min="5" max="400" step="5" name="MODULOWATT" value="{{request.form['MODULOWATT']}}" oninput="rangevalue3.value=value" />
+                        <output id="rangevalue3">20</output>
+                    </div>
+                    <div id="solarPanel" class="nav-button-list">
+                        <a href="#first">
+                            <div class="nav-button">
+                                Anterior
+                            </div>
+                        </a>
+                        <a href="#third">
+                            <div class="nav-button">
+                                Próximo
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-wrapper" id="third">
+                <div class="card">
+                    <h2>Parâmetros Avançados</h2>
+                    <div class="default-parameters">
+                        <div class="form__group">
+                            <label for="num1" class="form__label">Temperatura operacional (*C)</label>
+                                <!-- MODIFICAÇÃO BD name="TEMPERATURAOPCAO" value="{{request.form['TEMPERATURAOPCAO']}}"-->
+                                <input type="number" id="opTemp" class="form__field" name="TEMPERATURAOPCAO" value="{{request.form['TEMPERATURAOPCAO']}}" />
+                        </div>
+                        <div class="form__group">
+                            <label for="num2" class="form__label">Perdas do inversor (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASINVERSOR" value="{{request.form['PERDASINVERSOR']}}"-->
+                                <input type="number" id="inverterLoss" class="form__field" name="PERDASINVERSOR" value="{{request.form['PERDASINVERSOR']}}" value=10>
+                        </div>
+                        <div class="form__group">
+                            <label for="num6" class="form__label">Fator de segurança do inversor (%)</label>
+                                <!-- MODIFICAÇÃO BD name="FATORSEGURANCAINVERSOR" value="{{request.form['FATORSEGURANCAINVERSOR']}}"-->
+                                <input type="number" id="safety-factor" class="form__field" name="FATORSEGURANCAINVERSOR" value="{{request.form['FATORSEGURANCAINVERSOR']}}" value=15>
+                        </div>
+                        <div class="form__group">
+                            <label for="num3" class="form__label">Perdas de Fiação e Cabo (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASCABO" value="{{request.form['PERDASCABO']}}"-->
+                                <input type="number" id="cableLoss" class="form__field" name="PERDASCABO" value="{{request.form['PERDASCABO']}}" value=5>
+                        </div>
+                        <div class="form__group">
+                            <label for="num4" class="form__label">Perdas por incompatibilidade (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASINCOMPATIBILIDADE" value="{{request.form['PERDASINCOMPATIBILIDADE']}}"-->
+                                <input type="number" id="mismatchLoss" class="form__field" name="PERDASINCOMPATIBILIDADE" value="{{request.form['PERDASINCOMPATIBILIDADE']}}">
+                        </div>
+                        <div class="form__group">
+                            <label for="num5" class="form__label">Perdas de sujeira e sombreamento (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASSUJEIRA" value="{{request.form['PERDASSUJEIRA']}}"-->
+                                <input type="number" id="soilingLoss" class="form__field" name="PERDASSUJEIRA" value="{{request.form['PERDASSUJEIRA']}}" value=2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MODIFICAÇÃO BD troquei o div por button-->
+            <div style="text-align:center;">
+                <button class="card-wrapper calculate"  type="submit"  onclick="calculate();">
+                <div class="card">
+                    <h2>Calcular</h2>
+                </div>
+            </button> <!-- MODIFICAÇÃO BD troquei o div por button-->
+            </div>
+            <div class="card-wrapper">
+                <div class="card">
+
+                    <h2>Resultados</h2>
+
+                    <div class="results">
+                        <div>Tamanho da Usina: <span class="final-result">0</span>kW</div>
+                        <div>Potência da usina: <span class="final-result">0</span>kW</div>
+                        <div>Área Total Necessária: <span class="final-result">0</span>m<sup>2</sup></div>
+                        <div>Classificação do Módulo: <span class="final-result">0</span>W</div>
+                        <div>Número de módulos necessários: <span class="final-result">0</span></div>
+                        <div>Classificação de potência do inversor: <span class="final-result">0</span>kW</div>
+                        <div>Custo total (excluindo subsídio de 30%): <span class="final-result">0</span></div>
+                        <div>Custo subsidiado pelo governo: <span class="final-result">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/ongrid.js') }}"></script>
+    </form>  <!-- MODIFICAÇÃO BD linha 218 -->
+</body>
+
+</html>
